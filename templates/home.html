@@ -1,0 +1,14 @@
+{%extends "layout.html"%} {% block style%}
+<link rel="stylesheet" href="static/styles/home.css" />
+{%endblock style%} {%block title%} Home {% endblock title%} {% block main %}
+<h1>Welcome To My Site!</h1>
+<br />
+{% for post in posts%}
+<div class="post">
+    <h3>{{post.title}}</h3>
+    <h5>By <a href="/about">{{post.author}}</a></h5>
+    <h5>{{post.date}}</h5>
+    <div class="image"></div>
+    <p>{{post.contnet}}</p>
+</div>
+{%endfor%} {%endblock main%}

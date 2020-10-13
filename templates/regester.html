@@ -1,0 +1,41 @@
+{% extends "layout.html"%} {%block title%} Regester {%endblock title%} {%block
+style%}
+<link rel="stylesheet" href="static/styles/regestration.css" />
+{%endblock style%} {%block main%}
+
+<div class="container">
+    <form action="" method="post">
+        {{ form.hidden_tag()}}
+        <div class="username-container feild">
+            {{form.username.label(class='user-label')}} {%if form.username.errors%}
+            {{form.username(class='user-label error')}} {%for error in
+            form.username.errors%}
+            <span class="error-msg">{{error}}</span>
+            {% endfor %} {%else%} {{form.username()}} {%endif%}
+        </div>
+        <div class="email-container feild">
+            {{form.email.label()}} {%if form.email.errors%}
+            {{form.email(class='error')}} {%for error in form.email.errors%}
+            <span class="error-msg">{{error}}</span>
+            {% endfor %} {%else%} {{form.email(class='email')}} {%endif%}
+        </div>
+        <div class="password-container feild">
+            {{form.password.label()}} {%if form.password.errors%}
+            {{form.password(class='error')}} {%for error in form.password.errors%}
+            <span class="error-msg">{{error}}</span>
+            {% endfor %} {%else%} {{form.password(class='password')}} {%endif%}
+        </div>
+        <div class="confirm-container feild">
+            {{form.confirm_password.label()}} {%if form.confirm_password.errors%}
+            {{form.confirm_password(class='error')}} {%for error in
+            form.confirm_password.errors%}
+            <span class="error-msg">{{error}}</span>
+            {% endfor %} {%else%} {{form.confirm_password()}} {%endif%}
+        </div>
+        {{ form.submit(class='registerbtn')}}
+    </form>
+</div>
+<div class="footnote">
+    <p>Already have an account? <a href="/login">Login Here</a></p>
+</div>
+{%endblock main%}

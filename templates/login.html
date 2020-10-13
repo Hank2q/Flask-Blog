@@ -1,0 +1,34 @@
+{% extends "layout.html"%} {%block title%} Regester {%endblock title%} {%block
+style%}
+<link rel="stylesheet" href="static/styles/regestration.css" />
+{%endblock style%} {%block main%}
+
+<div class="container">
+    <form action="" method="post">
+        {{ form.hidden_tag()}}
+        <div class="email-container feild">
+            {{form.email.label(class='user-label')}} {%if form.email.errors%}
+            {{form.email(class='user-label error')}} {%for error in
+            form.email.errors%}
+            <span class="error-msg">{{error}}</span>
+            {% endfor %} {%else%} {{form.email(class='email')}} {%endif%}
+        </div>
+        <div class="password-container feild">
+            {{form.password.label(class='user-label')}} {%if form.password.errors%}
+            {{form.password(class='user-label error')}} {%for error in
+            form.password.errors%}
+            <span class="error-msg">{{error}}</span>
+            {% endfor %} {%else%} {{form.password(class='password')}} {%endif%}
+        </div>
+        {{form.remember.label()}} {{ form.remember()}} {{
+        form.submit(class='registerbtn')}}
+    </form>
+</div>
+<div>
+    <p><a href="#">Forgot Password</a></p>
+</div>
+
+<div class="footnote">
+    <p>Don't have an account? <a href="/regester">Regester Here</a></p>
+</div>
+{%endblock main%}

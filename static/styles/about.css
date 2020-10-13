@@ -1,0 +1,13 @@
+.bio {
+    text-align: start;
+    width: 50%;
+    margin: 20px auto;
+}
+
+.bio img {
+    margin-top: 20px;
+    height: 40vh;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
