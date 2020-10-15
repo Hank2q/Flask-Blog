@@ -1,0 +1,59 @@
+{%extends "layout.html"%} {% block title%} Account {% endblock title%} {% block
+style%}
+<link rel="stylesheet" href="static/styles/account.css" />
+
+{%endblock style%} {%block main%}
+<div class="container">
+    <div class="user-info">
+        <div class="img-cont">
+            <img class="profile-pic" src="{{image}}" alt="Profile Picture" />
+            <label class="edit-pic" for="profile_img"
+                ><i class="fas fa-edit"></i> Change</label
+            >
+        </div>
+        <div class="text">
+            <h1 class="display-username">{{current_user.username}}</h1>
+            <h4 class="display-email">{{current_user.email}}</h4>
+        </div>
+        <button class="edit"><i class="fas fa-edit"></i> Edit</button>
+    </div>
+    <div class="update-container invisible">
+        <form action="" method="POST" enctype="multipart/form-data">
+            {{ form.hidden_tag()}}
+            <div class="username-container feild">
+                {{form.username.label(class='user-label')}} {%if
+                form.username.errors%} {{form.username(class='username error')}}
+                {%for error in form.username.errors%}
+                <span class="error-msg">{{error}}</span>
+                {% endfor %} {%else%} {{form.username(class='username')}} {%endif%}
+            </div>
+            <div class="email-container feild">
+                {{form.email.label()}} {%if form.email.errors%}
+                {{form.email(class='email error')}} {%for error in
+                form.email.errors%}
+                <span class="error-msg">{{error}}</span>
+                {% endfor %} {%else%} {{form.email(class='email')}} {%endif%}
+            </div>
+            {{form.profile_img.label()}}<br />
+            {%if form.profile_img.errors%} {{form.profile_img(class='profile_img
+            error')}}<br />
+            {%for error in form.profile_img.errors%}
+            <span class="error-msg">{{error}}</span>
+            {% endfor %} {%else%} {{form.profile_img()}}<br />
+            <img id="output2" class="invisible" />
+            {%endif%} {{ form.submit(class='registerbtn')}}
+        </form>
+        <button class="closebtn">Close</button>
+    </div>
+</div>
+<div class="modal invisible">
+    <div class="modal-cont">
+        <h2></h2>
+        <img id="output" />
+        <label for="submit">Update Profile Picture</label>
+        <button class="close-modal"><i class="fas fa-times"></i></button>
+    </div>
+</div>
+{%endblock main%} {%block script%}
+<script src="static/javascripts/account.js"></script>
+{%endblock script%}

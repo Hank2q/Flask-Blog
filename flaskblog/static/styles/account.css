@@ -1,0 +1,187 @@
+.container {
+    width: 60%;
+    margin: 0 auto;
+    position: relative;
+}
+
+.container > div {
+    margin-bottom: 20px;
+}
+.user-info {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    background-color: #d3d3d3;
+    border-radius: 5px;
+    box-shadow: 0px 4px 9px 0px #848484;
+}
+.text {
+    margin-left: 20px;
+}
+.img-cont {
+    position: relative;
+    width: 101px;
+    height: 101px;
+    border-radius: 5px;
+    border: 1px solid transparent;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.edit-pic {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    border: none;
+    outline: none;
+    background-color: #252525;
+    color: #d3d3d3;
+    font-size: 0.8em;
+    border-bottom-right-radius: 5px;
+    padding: 1px;
+    padding-top: 0;
+    padding-bottom: 0;
+    cursor: pointer;
+    transform: translateX(110%);
+    transition: transform 0.15s ease-in;
+}
+.profile-pic {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.img-cont:hover {
+    border: 1px solid #252525;
+}
+.img-cont:hover .edit-pic {
+    transform: translateX(0%);
+}
+
+.edit {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px;
+    border: none;
+    background-color: #252525;
+    color: #d3d3d3;
+    cursor: pointer;
+    font-size: 1rem;
+    border-radius: 5px;
+}
+
+.update-container {
+    background-color: #d3d3d3;
+    border-radius: 5px;
+    box-shadow: 0px 4px 9px 0px #848484;
+    padding: 16px;
+    margin: 0 auto;
+    text-align: start;
+}
+
+.update-container input[type="text"] {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 0px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+}
+.update-container input[type="text"]:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
+.registerbtn,
+.closebtn {
+    background-color: #4caf50;
+    color: white;
+    padding: 16px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+}
+.closebtn {
+    background-color: #aa3d3d;
+}
+.registerbtn:hover,
+.closebtn:hover {
+    opacity: 1;
+}
+.error-msg {
+    text-align: start;
+    color: red;
+    margin: 0;
+}
+
+.error {
+    border: 3px solid red !important;
+}
+
+.feild {
+    margin-bottom: 20px;
+}
+
+.modal {
+    position: absolute;
+    z-index: 1;
+    height: 100vh;
+    width: 100vw;
+    background-color: #0005;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.modal-cont {
+    width: 40%;
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #d3d3d3;
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+}
+.modal label {
+    background-color: #4caf50;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+}
+
+.modal label:hover {
+    opacity: 1;
+}
+#output {
+    height: 54%;
+    margin: 20px auto;
+}
+#output2 {
+    margin-top: 10px;
+    height: 100px;
+}
+.close-modal {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding-right: 5px;
+    outline: none;
+    border: none;
+    background: none;
+    padding-top: 2px;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+.invisible {
+    display: none;
+}

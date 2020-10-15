@@ -9,12 +9,10 @@
             href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
             rel="stylesheet"
         />
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
-            integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+        <script
+            src="https://kit.fontawesome.com/b699383d77.js"
             crossorigin="anonymous"
-        />
+        ></script>
         <script src="static/javascripts/toast.js"></script>
         {% block style %} {% endblock style%}
     </head>
@@ -31,10 +29,17 @@
                 <li class="link"><a href="{{url_for('home')}}">Home</a></li>
                 <li class="link"><a href="{{url_for('about')}}">About</a></li>
                 <li class="link"><a href="{{url_for('contact')}}">Contact</a></li>
+                {%if current_user.is_authenticated %}
+                <li class="link">
+                    <a href="{{url_for('account')}}">{{current_user.username}}</a>
+                </li>
+                <li class="link last"><a href="{{url_for('logout')}}">Logout</a></li>
+                {%else%}
                 <li class="link"><a href="{{url_for('login')}}">Login</a></li>
                 <li class="link last">
                     <a href="{{url_for('regester')}}">Regester</a>
                 </li>
+                {%endif%}
             </ul>
         </nav>
         <main>{% block main %} {%endblock main%}</main>
@@ -48,7 +53,7 @@
         {%with messages = get_flashed_messages(with_categories=true)%} {%if
         messages%} {%for catagory, message in messages%}
         <script>
-            Toast.show("{{catagory}}", "{{message}}", 4);
+            Toast.show("{{catagory}}", "{{message}}", 7);
         </script>
         {%endfor%} {%endif%} {%endwith%} {%block script%}{%endblock script%}
     </body>
