@@ -40,7 +40,7 @@ style%}
             {%for error in form.profile_img.errors%}
             <span class="error-msg">{{error}}</span>
             {% endfor %} {%else%} {{form.profile_img()}}<br />
-            <img id="output2" class="invisible" />
+            <img id="output" class="invisible" />
             {%endif%} {{ form.submit(class='registerbtn')}}
         </form>
         <button class="closebtn">Close</button>

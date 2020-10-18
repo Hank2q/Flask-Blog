@@ -62,6 +62,8 @@ function toggleUpdate() {
     update.classList.toggle("invisible");
 }
 
+
+// simulate css hover, to fix issue with sweetalert intigration
 function picIn() {
     pictureContainer.classList.add('img-cont-hover')
     outsideBtn.classList.add('edit-pic-show')
@@ -83,6 +85,7 @@ async function outsideUpload() {
     confirmButtonText: `Upload`,
     showCloseButton: true
     })
+
     // handel dissmissing the modal without uploading
     // to fix hover issue
     if (result.isDismissed || !result.value) {
