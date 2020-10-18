@@ -4,10 +4,7 @@
     href="{{
 url_for('static', filename='styles/home.css') }}"
 />
-{%endblock style%} {%block title%} Home {% endblock title%} {% block main %}
-<h1>Recent Posts</h1>
-<br />
-{% for post in posts%}
+{%endblock style%} {%block title%} {{title}} {% endblock title%} {% block main %}
 <div class="post" id="{{post.id}}">
     <div class="user-info">
         <div class="img-cont">
@@ -44,7 +41,7 @@ url_for('static', filename='styles/home.css') }}"
                 </li>
             </i>
             <form
-                action="{{url_for('delete_post', post_id=post.id, page='home')}}"
+                action="{{url_for('delete_post', post_id=post.id, page='account')}}"
                 method="POST"
             >
                 <input
@@ -57,18 +54,14 @@ url_for('static', filename='styles/home.css') }}"
         </ul>
     </div>
     {%endif%}
-    <h3>
-        <a class="post-title" href="{{url_for('post', post_id=post.id)}}"
-            >{{post.title}}</a
-        >
-    </h3>
+    <h3 class="post-title">{{post.title}}</h3>
     <p>{{post.content}}</p>
 </div>
-{%endfor%} {%endblock main%} {%block script%}
+
+{%endblock main%} {%block script%}
 <script src="{{ url_for('static', filename='javascripts/sweetalert2.all.min.js') }}"></script>
 <script
     defer
     src="{{ url_for('static', filename='javascripts/postMenu.js') }}"
 ></script>
-
 {%endblock script%}

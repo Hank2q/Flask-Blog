@@ -2,7 +2,6 @@
     box-sizing: border-box;
 }
 
-/* Add padding to containers */
 .container {
     padding: 16px;
     padding-top: 0;
@@ -11,9 +10,8 @@
     text-align: start;
 }
 
-/* Full-width input fields */
 input[type="text"],
-input[type="password"] {
+textarea {
     width: 100%;
     padding: 15px;
     margin: 5px 0 0px 0;
@@ -23,20 +21,18 @@ input[type="password"] {
     font-size: 1.1em;
 }
 
+textarea {
+    height: 300px;
+    resize: vertical;
+}
+
 input[type="text"]:focus,
-input[type="password"]:focus {
+textarea:focus {
     box-shadow: 0 0 8px 1px rgb(0, 153, 255), inset 0 0 5px rgb(0, 153, 255);
     outline: none;
 }
 
-/* Overwrite default styles of hr */
-hr {
-    border: 1px solid #f1f1f1;
-    margin-bottom: 25px;
-}
-
-/* Set a style for the submit/register button */
-.registerbtn {
+.postbtn {
     background-color: #4caf50;
     color: white;
     padding: 16px 20px;
@@ -47,19 +43,8 @@ hr {
     opacity: 0.9;
 }
 
-.registerbtn:hover {
+.postbtn:hover {
     opacity: 1;
-}
-
-/* Add a blue text color to links */
-a {
-    color: dodgerblue;
-}
-
-/* Set a grey background color and center the text of the "sign in" section */
-.signin {
-    background-color: #f1f1f1;
-    text-align: center;
 }
 
 .error-msg {

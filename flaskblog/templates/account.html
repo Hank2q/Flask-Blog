@@ -1,15 +1,15 @@
 {%extends "layout.html"%} {% block title%} Account {% endblock title%} {% block
 style%}
-<link rel="stylesheet" href="static/styles/account.css" />
-
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='styles/account.css') }}"
+/>
 {%endblock style%} {%block main%}
 <div class="container">
     <div class="user-info">
         <div class="img-cont">
             <img class="profile-pic" src="{{image}}" alt="Profile Picture" />
-            <label class="edit-pic" for="profile_img"
-                ><i class="fas fa-edit"></i> Change</label
-            >
+            <button class="edit-pic"><i class="fas fa-edit"></i> Change</button>
         </div>
         <div class="text">
             <h1 class="display-username">{{current_user.username}}</h1>
@@ -18,7 +18,7 @@ style%}
         <button class="edit"><i class="fas fa-edit"></i> Edit</button>
     </div>
     <div class="update-container invisible">
-        <form action="" method="POST" enctype="multipart/form-data">
+        <form id="update-form" action="" method="POST" enctype="multipart/form-data">
             {{ form.hidden_tag()}}
             <div class="username-container feild">
                 {{form.username.label(class='user-label')}} {%if
@@ -46,14 +46,54 @@ style%}
         <button class="closebtn">Close</button>
     </div>
 </div>
-<div class="modal invisible">
-    <div class="modal-cont">
-        <h2></h2>
-        <img id="output" />
-        <label for="submit">Update Profile Picture</label>
-        <button class="close-modal"><i class="fas fa-times"></i></button>
+<div class="posts-container">
+    <div class="list">
+        <h3>Posts</h3>
+        <i class="fas fa-caret-left"></i>
+    </div>
+    <div class="posts">
+        {% for post in posts%}
+        <div class="post" id="{{post.id}}">
+            <h3>
+                <a class="post-title" href="{{url_for('post', post_id=post.id)}}"
+                    >{{post.title}}</a
+                >
+            </h3>
+            <div class="edit-post">
+                <i class="menu-btn fas fa-ellipsis-h"></i>
+                <ul class="options">
+                    <a href="{{url_for('update_post', post_id=post.id)}}">
+                        <li class="option">
+                            <i class="fas fa-pen"> Edit</i>
+                        </li>
+                    </a>
+                    <i class="delete-post">
+                        <li class="option">
+                            <i class="fas fa-trash-alt"> Delete</i>
+                        </li>
+                    </i>
+                    <form
+                        action="{{url_for('delete_post', post_id=post.id, page='account')}}"
+                        method="POST"
+                    >
+                        <input
+                            style="display: none"
+                            id="delete-{{post.id}}"
+                            type="submit"
+                            value="delete"
+                        />
+                    </form>
+                </ul>
+            </div>
+            <h5>{{post.post_date.strftime("%d %b, %Y") }}</h5>
+            <p>{{post.content}}</p>
+        </div>
+        {%endfor%}
     </div>
 </div>
 {%endblock main%} {%block script%}
-<script src="static/javascripts/account.js"></script>
+<script src="{{ url_for('static', filename='javascripts/sweetalert2.all.min.js') }}"></script>
+<script src="{{ url_for('static', filename='javascripts/postMenu.js') }}"></script>
+<script src="{{ url_for('static', filename='javascripts/account.js') }}"></script>
+
 {%endblock script%}

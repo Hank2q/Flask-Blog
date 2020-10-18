@@ -1,0 +1,30 @@
+{%extends "layout.html"%} {% block title%} {{legend}} {% endblock title%} {% block
+style%}
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='styles/newPost.css') }}"
+/>
+{%endblock style%} {%block main%}
+<h1>{{legend}}</h1>
+<div class="container">
+    <form action="" method="post">
+        {{ form.hidden_tag()}}
+        <div class="title-container feild">
+            {{form.title.label(class='title-label')}} {%if form.title.errors%}
+            {{form.title(class='user-label error', autocomplete='off')}} {%for error
+            in form.title.errors%}
+            <span class="error-msg">{{error}}</span>
+            {% endfor %} {%else%} {{form.title(class='title', autocomplete='off')}}
+            {%endif%}
+        </div>
+        <div class="content feild">
+            {{form.content.label(class='user-label')}} {%if form.content.errors%}
+            {{form.content(class='user-label error')}} {%for error in
+            form.content.errors%}
+            <span class="error-msg">{{error}}</span>
+            {% endfor %} {%else%} {{form.content(class='content')}} {%endif%}
+        </div>
+        {{form.submit(class='postbtn')}}
+    </form>
+</div>
+{%endblock main%}

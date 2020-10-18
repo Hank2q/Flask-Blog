@@ -1,5 +1,5 @@
 {%extends "layout.html"%} {% block style%}
-<link rel="stylesheet" href="static/styles/about.css" />
+<link rel="stylesheet" href="{{url_for('static', filename='styles/about.css') }}" />
 {%endblock style%} {% block title%} About {% endblock title%} {%block main%}
 <h1>About Me:</h1>
 <div class="bio">

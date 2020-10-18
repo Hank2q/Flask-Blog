@@ -1,19 +1,23 @@
-from flask import render_template, flash, url_for, redirect, request
+from flask import render_template, flash, url_for, redirect, request, abort
 from flaskblog import app, bcrypt, db
-from flaskblog.forms import RegestrationForm, LoginForm, UpdateForm
+from flaskblog.forms import RegestrationForm, LoginForm, UpdateForm, PostForm
 from flaskblog.model import User, Post
 from flask_login import login_user, current_user, logout_user, login_required
 from os.path import splitext as get_ext, join
 from PIL import Image
-
 # * to have multiple url paths leading to the same page, use multiple decorators
+
+# ? the first arg in url_for is the name of the function u gave and then
+# ? the arguments u specified if any
 
 
 @app.route('/')
 @app.route('/home')
 def home():
     # ! no need to specify parent dir if its named templates, else have to mention i.e. pages/home.html
-    return render_template('home.html')
+    posts = Post.query.all()
+    posts.reverse()
+    return render_template('home.html', posts=posts)
 
 
 @app.route('/about')
@@ -97,4 +101,69 @@ def account():
         form.submit()
     image = url_for('static', filename='images/profiles/' +
                     current_user.profile_img)
-    return render_template('account.html', image=image, form=form)
+    posts = current_user.posts
+    posts.reverse()
+    return render_template('account.html', image=image, form=form, posts=posts)
+
+
+@app.route("/post/new", methods=['GET', 'POST'])
+@login_required
+def new_post():
+    form = PostForm()
+    if form.validate_on_submit():
+        post = Post(title=form.title.data, content=form.content.data,
+                    author=current_user)
+        db.session.add(post)
+        db.session.commit()
+        flash('Post created', 'success')
+        return redirect(url_for('home'))
+    return render_template('newPost.html', form=form, legend="New Post")
+
+
+@app.route("/post/<int:post_id>")
+def post(post_id):
+    post = Post.query.get_or_404(post_id)
+    return render_template('post.html', title=post.title, post=post)
+
+
+@app.route('/user/<string:username>')
+def user(username):
+    user = User.query.filter_by(username=username).first()
+    posts = user.posts
+    posts.reverse()
+    return render_template('user.html', user=user, posts=posts)
+
+
+@app.route("/post/<int:post_id>/update", methods=['GET', 'POST'])
+@login_required
+def update_post(post_id):
+    post = Post.query.get_or_404(post_id)
+    if post.author != current_user:
+        abort(403)
+    form = PostForm()
+    if form.validate_on_submit():
+        post.title = form.title.data
+        post.content = form.content.data
+        db.session.commit()
+        flash('Post updated', 'success')
+        return redirect(url_for('post', post_id=post_id))
+    elif request.method == "GET":
+        form.submit.label.text = "Update"
+        form.title.data = post.title
+        form.content.data = post.content
+    return render_template('newPost.html', form=form, legend="Update Post")
+
+
+@app.route("/post/<int:post_id>/delete", methods=['POST'])
+@login_required
+def delete_post(post_id):
+    post = Post.query.get_or_404(post_id)
+    if post.author != current_user:
+        abort(403)
+    db.session.delete(post)
+    db.session.commit()
+    flash(f'Post: "{post.title}" Deleted', 'info')
+    page = request.args.get('page')
+    if page:
+        return redirect(url_for(page))
+    return redirect(url_for('home'))

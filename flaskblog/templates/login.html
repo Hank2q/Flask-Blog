@@ -1,5 +1,8 @@
 {% extends "layout.html"%} {%block title%} Login {%endblock title%} {%block style%}
-<link rel="stylesheet" href="static/styles/regestration.css" />
+<link
+    rel="stylesheet"
+    href="{{url_for('static', filename='styles/regestration.css')}}"
+/>
 {%endblock style%} {%block main%}
 
 <div class="container">
