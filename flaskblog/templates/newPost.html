@@ -2,11 +2,15 @@
 style%}
 <link
     rel="stylesheet"
+    href="{{ url_for('static', filename='styles/inputs.css') }}"
+/>
+<link
+    rel="stylesheet"
     href="{{ url_for('static', filename='styles/newPost.css') }}"
 />
 {%endblock style%} {%block main%}
 <h1>{{legend}}</h1>
-<div class="container">
+<div class="input-container">
     <form action="" method="post">
         {{ form.hidden_tag()}}
         <div class="title-container feild">
@@ -24,7 +28,7 @@ style%}
             <span class="error-msg">{{error}}</span>
             {% endfor %} {%else%} {{form.content(class='content')}} {%endif%}
         </div>
-        {{form.submit(class='postbtn')}}
+        {{form.submit(class='postbtn registerbtn')}}
     </form>
 </div>
 {%endblock main%}

@@ -10,28 +10,22 @@
     position: relative;
 }
 
-.post > * {
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-.image {
-    width: 100%;
-}
-
 .post > p {
     line-height: 1.5em;
     white-space: pre-wrap;
 }
 
-.img-cont {
-    position: relative;
-    width: 50px;
-    height: 50px;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    margin-right: 10px;
+.post > * {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.post a {
+    text-decoration: none;
+    color: #0358b8;
+}
+
+.post a:hover {
+    text-decoration: underline;
 }
 .edit-post {
     position: absolute;
@@ -45,10 +39,6 @@
     flex-direction: column;
     align-items: flex-end;
 }
-.circle {
-    max-width: 100%;
-    max-height: 100%;
-}
 .user-info {
     display: flex;
     margin-bottom: 0;
@@ -56,21 +46,23 @@
     padding-bottom: 5px;
     border-bottom: 1px solid #7c7c7c;
 }
-
-main a {
-    text-decoration: none;
-    color: #002e69;
+.img-cont {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
 }
-
-main a:hover {
-    text-decoration: underline;
-    color: #0050b9;
+.circle {
+    max-width: 100%;
+    max-height: 100%;
 }
-main a:visited {
-    text-decoration: underline;
-    color: #002e69;
+.fa-ellipsis-h {
+    font-size: 1.4em;
+    cursor: pointer;
 }
-
 .options {
     display: flex;
     flex-direction: column;
@@ -104,9 +96,4 @@ main a:visited {
 
 .options a {
     text-decoration: none;
-}
-
-.fa-ellipsis-h {
-    font-size: 1.4em;
-    cursor: pointer;
 }

@@ -1,5 +1,6 @@
 {%extends "layout.html"%} {% block title%} {{user.username}} {% endblock title%} {%
 block style%}
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/post.css') }}" />
 <link rel="stylesheet" href="{{ url_for('static', filename='styles/user.css') }}" />
 {%endblock style%} {%block main%}
 <div class="container">

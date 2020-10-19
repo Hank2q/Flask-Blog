@@ -1,16 +1,3 @@
-* {
-    box-sizing: border-box;
-}
-
-.container {
-    padding: 16px;
-    padding-top: 0;
-    width: 60%;
-    margin: 0 auto;
-    text-align: start;
-}
-
-input[type="text"],
 textarea {
     width: 100%;
     padding: 15px;
@@ -30,33 +17,4 @@ input[type="text"]:focus,
 textarea:focus {
     box-shadow: 0 0 8px 1px rgb(0, 153, 255), inset 0 0 5px rgb(0, 153, 255);
     outline: none;
-}
-
-.postbtn {
-    background-color: #4caf50;
-    color: white;
-    padding: 16px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    opacity: 0.9;
-}
-
-.postbtn:hover {
-    opacity: 1;
-}
-
-.error-msg {
-    text-align: start;
-    color: red;
-    margin: 0;
-}
-
-.error {
-    border: 3px solid red !important;
-}
-
-.feild {
-    margin-bottom: 20px;
 }

@@ -1,12 +1,17 @@
 {%extends "layout.html"%} {% block title%} Account {% endblock title%} {% block
 style%}
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/post.css') }}" />
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='styles/inputs.css') }}"
+/>
 <link
     rel="stylesheet"
     href="{{ url_for('static', filename='styles/account.css') }}"
 />
 {%endblock style%} {%block main%}
 <div class="container">
-    <div class="user-info">
+    <div class="account-info">
         <div class="img-cont">
             <img class="profile-pic" src="{{image}}" alt="Profile Picture" />
             <button class="edit-pic"><i class="fas fa-edit"></i> Change</button>
@@ -43,7 +48,7 @@ style%}
             <img id="output" class="invisible" />
             {%endif%} {{ form.submit(class='registerbtn')}}
         </form>
-        <button class="closebtn">Close</button>
+        <button class="closebtn registerbtn">Close</button>
     </div>
 </div>
 <div class="posts-container">
