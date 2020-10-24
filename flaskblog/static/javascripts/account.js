@@ -6,6 +6,7 @@ const pictureInput = document.querySelector("#profile_img");
 const pictureContainer = document.querySelector('.img-cont')
 const outsideBtn = document.querySelector(".edit-pic");
 const expand = document.querySelector('.list')
+const updateForm = document.querySelector('#update-form')
 let expanded = false;
 
 // event listeners
@@ -102,7 +103,7 @@ async function outsideUpload() {
         imageUrl: e.target.result,
         imageAlt: `The uploaded picture`,
         showCloseButton: true,
-        confirmButtonText: `<label for="submit">Update Profile Picture</label>`,
+        confirmButtonText: `Update Profile Picture`,
         confirmButtonColor: '#4caf50'
         })
         // handle dismissing the modal after hovering, return the form file input to empty
@@ -111,6 +112,8 @@ async function outsideUpload() {
             picIn()
             setTimeout(picOut, 500)
 
+        } else if (res.isConfirmed){
+            updateForm.submit()
         }
     }
     reader.readAsDataURL(file)
