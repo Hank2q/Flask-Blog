@@ -10,13 +10,15 @@ from PIL import Image
 # ? the first arg in url_for is the name of the function u gave and then
 # ? the arguments u specified if any
 
+POSTS_PER_PAGE = 7
+
 
 @app.route('/')
 @app.route('/home')
 def home():
     # ! no need to specify parent dir if its named templates, else have to mention i.e. pages/home.html
-    posts = Post.query.all()
-    posts.reverse()
+    posts = Post.query.order_by(
+        Post.post_date.desc()).paginate(per_page=POSTS_PER_PAGE, page=1)
     return render_template('home.html', posts=posts)
 
 
@@ -175,3 +177,13 @@ def data():
     json = [{'id': p.id, 'title': p.title,
              'authour': p.author.username, 'date': p.post_date} for p in posts]
     return jsonify(json)
+
+
+@app.route('/more')
+def more():
+    page = request.args.get('page', 2, type=int)
+    posts = Post.query.order_by(
+        Post.post_date.desc()).paginate(per_page=POSTS_PER_PAGE)
+    if 1 < page <= posts.pages:
+        next_posts = posts.query.paginate(per_page=POSTS_PER_PAGE, page=page)
+        return render_template('more.html', posts=next_posts)

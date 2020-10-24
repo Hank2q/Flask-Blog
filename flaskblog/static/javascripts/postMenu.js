@@ -11,16 +11,22 @@ menuBtns.forEach((btn)=> {
     deleteBtn.addEventListener("click", () => {deleteModal(postTitle, post.id)});
 })
 
-function deleteModal(title, postId) {
+async function deleteModal(title, postId) {
     {
-            Swal.fire({
+            let result = await Swal.fire({
                 title: "Confirm Post Deleting?",
                 text: `Post: ${title}`,
                 icon: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#d33",
                 cancelButtonColor: "#999",
-                confirmButtonText: `<label for="delete-${postId}">Yes, Delete It!</label>`,
+                confirmButtonText: `Yes, Delete It!`,
             })
+
+            if (result.isConfirmed) {
+                let form = document.querySelector(`#delete-${postId}`)
+                form.submit()
+            }
+
         }
 }
