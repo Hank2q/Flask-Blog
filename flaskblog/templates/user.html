@@ -20,7 +20,9 @@ block style%}
 
 {% for post in posts%}
 <div class="post">
-    <h3><a href="{{url_for('post', post_id=post.id)}}">{{post.title}}</a></h3>
+    <h3 class="post-title">
+        <a href="{{url_for('post', post_id=post.id)}}">{{post.title}}</a>
+    </h3>
     <h5>{{post.post_date.strftime("%d %b, %Y") }}</h5>
     <p>{{post.content}}</p>
 </div>

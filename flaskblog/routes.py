@@ -1,4 +1,4 @@
-from flask import render_template, flash, url_for, redirect, request, abort
+from flask import render_template, flash, url_for, redirect, request, abort, jsonify
 from flaskblog import app, bcrypt, db
 from flaskblog.forms import RegestrationForm, LoginForm, UpdateForm, PostForm
 from flaskblog.model import User, Post
@@ -167,3 +167,11 @@ def delete_post(post_id):
     if page:
         return redirect(url_for(page))
     return redirect(url_for('home'))
+
+
+@app.route('/data')
+def data():
+    posts = Post.query.all()
+    json = [{'id': p.id, 'title': p.title,
+             'authour': p.author.username, 'date': p.post_date} for p in posts]
+    return jsonify(json)
