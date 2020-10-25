@@ -1,0 +1,19 @@
+.loader {
+    opacity: 0;
+    transition: opacity 0.2s ease-in;
+}
+.bottom {
+    position: relative;
+    height: 90px;
+}
+
+.show {
+    opacity: 1;
+}
+
+.bottom > p {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

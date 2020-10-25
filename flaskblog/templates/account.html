@@ -90,6 +90,7 @@ style%}
         </div>
         {%endfor%}
     </div>
+    {% if posts.pages > 1%}
     <div class="pages invisible">
         {%for page_num in posts.iter_pages(left_current=2, right_current=2)%} {%if
         page_num %} {%if page_num == posts.page%}
@@ -102,6 +103,7 @@ style%}
         >
         {%endif%} {%else%} ... {%endif%} {%endfor%}
     </div>
+    {% endif %}
 </div>
 {%endblock main%} {%block script%}
 <script src="{{ url_for('static', filename='javascripts/sweetalert2.all.min.js') }}"></script>

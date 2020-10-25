@@ -1,58 +1,70 @@
 {%extends "layout.html"%} {% block style%}
 <link rel="stylesheet" href="{{ url_for('static', filename='styles/post.css') }}" />
-{%endblock style%} {%block title%} Home {% endblock title%} {% block main %} {% for
-post in posts.items%}
-<div class="post" id="{{post.id}}">
-    <div class="user-info">
-        <div class="img-cont">
-            <img
-                class="circle"
-                src="{{url_for('static', filename='images/profiles/' + post.author.profile_img)}}"
-            />
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/home.css') }}" />
+{%endblock style%} {%block title%} Home {% endblock title%} {% block main %}
+<div data-pages="{{posts.pages}}" class="posts">
+    {% for post in posts.items%}
+    <div class="post" id="{{post.id}}">
+        <div class="user-info">
+            <div class="img-cont">
+                <img
+                    class="circle"
+                    src="{{url_for('static', filename='images/profiles/' + post.author.profile_img)}}"
+                />
+            </div>
+            <div class="text">
+                <h5>
+                    {%if current_user == post.author%}
+                    <a href="{{url_for('account')}}">{{post.author.username}}</a>
+                    {%else%}
+                    <a href="{{url_for('user', username=post.author.username)}}"
+                        >{{post.author.username}}</a
+                    >
+                    {%endif%}
+                </h5>
+                <h5>{{post.post_date.strftime("%d %b, %Y") }}</h5>
+            </div>
         </div>
-        <div class="text">
-            <h5>
-                {%if current_user == post.author%}
-                <a href="{{url_for('account')}}">{{post.author.username}}</a>
-                {%else%}
-                <a href="{{url_for('user', username=post.author.username)}}"
-                    >{{post.author.username}}</a
-                >
-                {%endif%}
-            </h5>
-            <h5>{{post.post_date.strftime("%d %b, %Y") }}</h5>
+        {%if current_user == post.author%}
+        <div class="edit-post">
+            <i class="menu-btn fas fa-ellipsis-h"></i>
+            <ul class="options">
+                <a href="{{url_for('update_post', post_id=post.id)}}">
+                    <li class="option">
+                        <i class="fas fa-pen"> Edit</i>
+                    </li>
+                </a>
+                <i class="delete-post">
+                    <li class="option">
+                        <i class="fas fa-trash-alt"> Delete</i>
+                    </li>
+                </i>
+                <form
+                    id="delete-{{post.id}}"
+                    action="{{url_for('delete_post', post_id=post.id, page='home')}}"
+                    method="POST"
+                ></form>
+            </ul>
         </div>
+        {%endif%}
+        <h3>
+            <a class="post-title" href="{{url_for('post', post_id=post.id)}}"
+                >{{post.title}}</a
+            >
+        </h3>
+        <p>{{post.content}}</p>
     </div>
-    {%if current_user == post.author%}
-    <div class="edit-post">
-        <i class="menu-btn fas fa-ellipsis-h"></i>
-        <ul class="options">
-            <a href="{{url_for('update_post', post_id=post.id)}}">
-                <li class="option">
-                    <i class="fas fa-pen"> Edit</i>
-                </li>
-            </a>
-            <i class="delete-post">
-                <li class="option">
-                    <i class="fas fa-trash-alt"> Delete</i>
-                </li>
-            </i>
-            <form
-                id="delete-{{post.id}}"
-                action="{{url_for('delete_post', post_id=post.id, page='home')}}"
-                method="POST"
-            ></form>
-        </ul>
-    </div>
-    {%endif%}
-    <h3>
-        <a class="post-title" href="{{url_for('post', post_id=post.id)}}"
-            >{{post.title}}</a
-        >
-    </h3>
-    <p>{{post.content}}</p>
+    {%endfor%}
 </div>
-{%endfor%} {%endblock main%} {%block script%}
+<div class="bottom">
+    <p class="no-more"></p>
+    <img
+        class="loader"
+        src="{{url_for('static', filename='images/loader.svg')}}"
+        alt=""
+    />
+</div>
+{%endblock main%} {%block script%}
 <script src="{{ url_for('static', filename='javascripts/sweetalert2.all.min.js') }}"></script>
 <script
     defer
@@ -62,4 +74,5 @@ post in posts.items%}
     defer
     src="{{ url_for('static', filename='javascripts/scrollLoad.js')}}"
 ></script>
+<script src="{{ url_for('static', filename='javascripts/infinitScroll.js')}}"></script>
 {%endblock script%}
