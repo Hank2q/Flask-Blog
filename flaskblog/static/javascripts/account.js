@@ -53,7 +53,9 @@ function loadExpanded() {
 
 function expandPosts() {
     let posts = document.querySelector('.posts')
+    let pages = document.querySelector('.pages')
     posts.classList.toggle('expanded');
+    pages.classList.toggle('invisible')
     expand.querySelector('i').classList.toggle('rotated');
     expanded = !expanded;
     sessionStorage.setItem('expanded', expanded);

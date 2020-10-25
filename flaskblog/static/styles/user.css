@@ -36,3 +36,25 @@
 .post > .post-title {
     margin-top: 0;
 }
+
+.page-num {
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    padding: 0 8px;
+    border-radius: 5px;
+    border: 1px solid #25252567;
+    color: black;
+    transition: background-color 0.15s ease;
+}
+.page-num.active {
+    background-color: #0099ff;
+    border-color: #0099ff;
+}
+.page-num:hover {
+    background-color: #0099ff;
+}
+
+.page-num:visited {
+    color: black;
+}

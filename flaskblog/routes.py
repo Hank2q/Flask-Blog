@@ -100,11 +100,11 @@ def account():
     elif request.method == "GET":
         form.username.data = current_user.username
         form.email.data = current_user.email
-        form.submit()
     image = url_for('static', filename='images/profiles/' +
                     current_user.profile_img)
-    posts = current_user.posts
-    posts.reverse()
+    page = request.args.get('page', 1, type=int)
+    posts = Post.query.filter_by(author=current_user).order_by(
+        Post.post_date.desc()).paginate(per_page=POSTS_PER_PAGE, page=page)
     return render_template('account.html', image=image, form=form, posts=posts)
 
 
@@ -130,9 +130,10 @@ def post(post_id):
 
 @app.route('/user/<string:username>')
 def user(username):
+    page = request.args.get('page', 1, type=int)
     user = User.query.filter_by(username=username).first()
-    posts = user.posts
-    posts.reverse()
+    posts = Post.query.filter_by(author=user).order_by(
+        Post.post_date.desc()).paginate(per_page=POSTS_PER_PAGE, page=page)
     return render_template('user.html', user=user, posts=posts)
 
 
