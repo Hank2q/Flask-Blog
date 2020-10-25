@@ -3,6 +3,9 @@ let posts = document.querySelector(".posts");
 let pages = parseInt(posts.dataset.pages, 10);
 const loader = document.querySelector('.loader')
 const bottom = document.querySelector('.bottom')
+const toTop = document.querySelector('.to-top')
+
+// trigger fetching when reaching bottom of current posts
 document.addEventListener('DOMContentLoaded', () => {
     let options = {
         root: null,
@@ -14,13 +17,24 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 
+// show back to top button after 2000px
+window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 2000) {
+        toTop.classList.add('show-top')
+    } else {
+        toTop.classList.remove('show-top')
+    }
+})
+
+
+// fetch next page if reached the bottom of the current posts page
 function intersectHandler(entries) {
     if (entries[0].isIntersecting) {
         loadNext();
     }
 }
 
-
+// check if still got more posts pages to load then fetch the next posts page
 async function loadNext() {
     page++;
     if (page <= pages) {
@@ -40,15 +54,5 @@ async function loadNext() {
     } else {
         loader.classList.remove('show')
         bottom.querySelector('p').innerHTML = 'No More Posts!'
-    }
-}
-    
-
-function scrollLoad() {
-    let currnent = window.scrollY;
-    let yHeight = document.documentElement.scrollHeight - window.innerHeight;
-    let vh = currnent / yHeight;
-    if (vh > 0.9) {
-        loadNext();
     }
 }
