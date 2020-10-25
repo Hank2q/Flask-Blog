@@ -12,6 +12,7 @@ nav {
     padding: 10px;
     background-color: #252525;
     justify-content: space-between;
+    position: relative;
 }
 .links {
     list-style: none;
@@ -44,10 +45,13 @@ nav {
 }
 
 .logo {
-    max-width: 5vw;
-    max-height: 5vh;
+    max-width: 7vw;
+    max-height: 7vh;
     transform: rotateY(180deg);
     height: fit-content;
+    position: absolute;
+    top: 5px;
+    left: 5px;
 }
 
 main {
