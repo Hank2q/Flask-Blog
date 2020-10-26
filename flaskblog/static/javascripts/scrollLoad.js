@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // show back to top button after 2000px
 window.addEventListener('scroll', () => {
-    if (window.pageYOffset > 2000) {
+    if (window.pageYOffset > 2500) {
         toTop.classList.add('show-top')
     } else {
         toTop.classList.remove('show-top')

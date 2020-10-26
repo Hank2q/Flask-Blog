@@ -1,0 +1,17 @@
+{% extends "layout.html"%} {%block title%} Request Password Reset {%endblock title%}
+{%block style%}
+<link rel="stylesheet" href="{{url_for('static', filename='styles/inputs.css')}}" />
+{%endblock style%} {%block main%}
+<div class="input-container">
+    <form action="" method="post">
+        {{ form.hidden_tag()}}
+        <div class="email-container feild">
+            {{form.email.label()}} {%if form.email.errors%}
+            {{form.email(class='error')}} {%for error in form.email.errors%}
+            <span class="error-msg">{{error}}</span>
+            {% endfor %} {%else%} {{form.email(class='email')}} {%endif%}
+        </div>
+        {{form.request(class='registerbtn')}}
+    </form>
+</div>
+{%endblock main%}

@@ -32,6 +32,7 @@ input[type="password"]:focus {
     cursor: pointer;
     width: 100%;
     opacity: 0.9;
+    font-size: 1.05em;
 }
 
 .registerbtn:hover {
@@ -50,6 +51,9 @@ a {
 
 .error {
     border: 3px solid red !important;
+}
+.error:focus {
+    box-shadow: 0 0 8px 1px #ff5c5c, inset 0 0 5px #ff5c5c !important;
 }
 
 .feild {
