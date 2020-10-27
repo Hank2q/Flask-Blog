@@ -1,6 +1,6 @@
 from flask import render_template, flash, url_for, redirect, request, abort, jsonify
 from flaskblog import app, bcrypt, db, mail
-from flaskblog.forms import RegestrationForm, LoginForm, UpdateForm, PostForm, RequerstResetForm, ResetPasswordForm
+from flaskblog.forms import RegestrationForm, LoginForm, UpdateForm, PostForm, RequerstResetForm, ResetPasswordForm, ChangePassword
 from flaskblog.model import User, Post
 from flask_login import login_user, current_user, logout_user, login_required
 from flask_mail import Message
@@ -233,3 +233,19 @@ def reset_password(token):
             f'Password updated', 'success')
         return redirect(url_for('login'))
     return render_template('passwordReset.html', form=form)
+
+
+@app.route('/reset', methods=['GET', 'POST'])
+@app.route('/reset/password', methods=['GET', 'POST'])
+@login_required
+def change_password():
+    form = ChangePassword()
+    if form.validate_on_submit():
+        hashed_password = bcrypt.generate_password_hash(
+            form.new_password.data).decode('utf-8')
+        current_user.password = hashed_password
+        db.session.commit()
+        flash(
+            f'Password Changed', 'success')
+        return redirect(url_for('account'))
+    return render_template('changePassword.html', form=form)

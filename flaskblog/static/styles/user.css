@@ -17,7 +17,9 @@
 }
 .text {
     margin-left: 20px;
+    text-align: start;
 }
+
 .img-cont {
     position: relative;
     width: 101px;

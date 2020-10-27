@@ -27,8 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 pictureInput.addEventListener("input", () => {
     // changing profile picture within the form, to show the sample
-    var output = document.getElementById("output2");
-    console.log(pictureInput);
+    var output = document.getElementById("output");
     output.src = URL.createObjectURL(event.target.files[0]);
     output.onload = function () {
         URL.revokeObjectURL(output.src);

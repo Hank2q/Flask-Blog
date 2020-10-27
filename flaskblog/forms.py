@@ -4,6 +4,7 @@ from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextA
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from flaskblog.model import User
 from flask_login import current_user
+from flaskblog import bcrypt
 
 
 class RegestrationForm(FlaskForm):
@@ -84,3 +85,23 @@ class ResetPasswordForm(FlaskForm):
         'Confirm New Password', validators=[DataRequired(), EqualTo('password')])
 
     reset = SubmitField('Reset Password')
+
+
+class ChangePassword(FlaskForm):
+    old_password = PasswordField('Old Password', validators=[
+        DataRequired(), Length(min=6, max=20)])
+    new_password = PasswordField('New Password', validators=[
+        DataRequired(), Length(min=6, max=20)])
+    confirm_new_password = PasswordField(
+        'Confirm New Password', validators=[DataRequired(), EqualTo('new_password')])
+
+    change = SubmitField('Change Password')
+
+    def validate_old_password(self, old_password):
+        if not bcrypt.check_password_hash(current_user.password, old_password.data):
+            raise ValidationError('Old password does not match, Try again.')
+
+    def validate_new_password(self, new_password):
+        if bcrypt.check_password_hash(current_user.password, new_password.data):
+            raise ValidationError(
+                'New and Old passwords cannot be the same. Chose a different password')

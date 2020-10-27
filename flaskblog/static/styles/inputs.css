@@ -35,6 +35,10 @@ input[type="password"]:focus {
     font-size: 1.05em;
 }
 
+.closebtn {
+    background-color: #aa3d3d;
+}
+
 .registerbtn:hover {
     opacity: 1;
 }

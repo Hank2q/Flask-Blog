@@ -47,7 +47,9 @@ style%}
             <span class="error-msg">{{error}}</span>
             {% endfor %} {%else%} {{form.profile_img()}}<br />
             <img id="output" class="invisible" />
-            {%endif%} {{ form.update(class='registerbtn')}}
+            {%endif%}
+            <a href="{{url_for('change_password')}}">Change Password</a>
+            {{ form.update(class='registerbtn')}}
         </form>
         <button class="closebtn registerbtn">Close</button>
     </div>
