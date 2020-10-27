@@ -11,6 +11,14 @@ menuBtns.forEach((btn)=> {
     deleteBtn.addEventListener("click", () => {deleteModal(postTitle, post.id)});
 })
 
+window.addEventListener('click', (e) => {
+    let openedMenu = document.querySelector('.show-menu')
+        if (openedMenu && !openedMenu.parentElement.contains(e.target)) {
+            openedMenu.classList.remove('show-menu')
+        }
+    
+})
+
 async function deleteModal(title, postId) {
     {
             let result = await Swal.fire({
