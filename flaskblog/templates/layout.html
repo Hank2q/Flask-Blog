@@ -29,19 +29,27 @@
                 />
             </a>
             <ul class="links">
-                <li class="link"><a href="{{url_for('home')}}">Home</a></li>
-                <li class="link"><a href="{{url_for('about')}}">About</a></li>
-                <li class="link"><a href="{{url_for('contact')}}">Contact</a></li>
+                <li class="link"><a href="{{url_for('main.home')}}">Home</a></li>
+                <li class="link"><a href="{{url_for('main.about')}}">About</a></li>
+                <li class="link">
+                    <a href="{{url_for('main.contact')}}">Contact</a>
+                </li>
                 {%if current_user.is_authenticated %}
                 <li class="link">
-                    <a href="{{url_for('account')}}">{{current_user.username}}</a>
+                    <a href="{{url_for('users.account')}}"
+                        >{{current_user.username}}</a
+                    >
                 </li>
-                <li class="link"><a href="{{url_for('new_post')}}">New Post</a></li>
-                <li class="link last"><a href="{{url_for('logout')}}">Logout</a></li>
-                {%else%}
-                <li class="link"><a href="{{url_for('login')}}">Login</a></li>
+                <li class="link">
+                    <a href="{{url_for('posts.new_post')}}">New Post</a>
+                </li>
                 <li class="link last">
-                    <a href="{{url_for('regester')}}">Regester</a>
+                    <a href="{{url_for('users.logout')}}">Logout</a>
+                </li>
+                {%else%}
+                <li class="link"><a href="{{url_for('users.login')}}">Login</a></li>
+                <li class="link last">
+                    <a href="{{url_for('users.regester')}}">Regester</a>
                 </li>
                 {%endif%}
             </ul>
