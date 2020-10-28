@@ -48,6 +48,12 @@ async function loadNext() {
             let new_posts = await result.text();
             loader.classList.remove('show')
             posts.insertAdjacentHTML("beforeend", new_posts);
+
+            // fire an event so postMenu script will add its functionality to
+            // newly added posts
+            // let ides = new_posts.querySelectorAll('.post')
+            newContentLoaded()
+
         } catch (err) {
             console.log("no more posts");
         }
@@ -55,4 +61,11 @@ async function loadNext() {
         loader.classList.remove('show')
         bottom.querySelector('p').innerHTML = 'No More Posts!'
     }
+}
+
+function newContentLoaded() {
+    const event = new CustomEvent('NewContentLoaded', {})
+
+    document.dispatchEvent(event)
+    console.log('event fired')
 }

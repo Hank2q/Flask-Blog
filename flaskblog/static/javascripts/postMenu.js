@@ -1,16 +1,3 @@
-const menuBtns = document.querySelectorAll('.menu-btn');
-
-menuBtns.forEach((btn)=> {
-    let options = btn.nextElementSibling;
-    let post = btn.parentElement.parentElement;
-    btn.addEventListener('click', ()=> {
-        options.classList.toggle('show-menu')
-    });
-    const deleteBtn = options.querySelector('.delete-post');
-    const postTitle = post.querySelector(".post-title").textContent;
-    deleteBtn.addEventListener("click", () => {deleteModal(postTitle, post.id)});
-})
-
 window.addEventListener('click', (e) => {
     let openedMenu = document.querySelector('.show-menu')
         if (openedMenu && !openedMenu.parentElement.contains(e.target)) {
@@ -18,6 +5,28 @@ window.addEventListener('click', (e) => {
         }
     
 })
+document.addEventListener('DOMContentLoaded', init)
+document.addEventListener('NewContentLoaded', init)
+
+
+function init() {
+    let menuBtns = document.querySelectorAll('.menu-btn');
+    menuBtns.forEach((btn)=> {
+        if (!btn.dataset.hooked){
+            btn.dataset.hooked = 'true'
+            let options = btn.nextElementSibling;
+            let post = btn.parentElement.parentElement;
+            btn.addEventListener('click', ()=> {
+                options.classList.toggle('show-menu')
+            });
+            const deleteBtn = options.querySelector('.delete-post');
+            const postTitle = post.querySelector(".post-title").textContent;
+            deleteBtn.addEventListener("click", () => {deleteModal(postTitle, post.id)});
+        }
+    })
+    
+}
+
 
 async function deleteModal(title, postId) {
     {

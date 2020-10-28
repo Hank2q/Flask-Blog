@@ -1,14 +1,14 @@
 from os.path import splitext as get_ext, join
 from PIL import Image
 from flask_mail import Message
-from flaskblog import app, mail
-from flask import url_for
+from flaskblog import mail
+from flask import url_for, current_app
 
 
 def update_profile_img(form_img, user_name):
     _, ext = get_ext(form_img.filename)
     pic_name = user_name + ext
-    pic_path = join(app.root_path, 'static/images/profiles', pic_name)
+    pic_path = join(current_app.root_path, 'static/images/profiles', pic_name)
     i = Image.open(form_img)
     i.thumbnail((150, 150))
     i.save(pic_path)
