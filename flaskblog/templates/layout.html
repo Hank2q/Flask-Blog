@@ -54,6 +54,19 @@
                 {%endif%}
             </ul>
         </nav>
+        <div class="alerts">
+            {%with messages = get_flashed_messages(with_categories=true)%} {%if
+            messages%} {%for catagory, message in messages%}
+            <div class="alert {{catagory}}">
+                <span
+                    class="closealert"
+                    onclick="this.parentElement.style.display='none';"
+                    >&times;</span
+                >
+                {{message}}
+            </div>
+            {%endfor%} {%endif%} {%endwith%}
+        </div>
         <main>{% block main %} {%endblock main%}</main>
         <script>
             let path = window.location.pathname;
@@ -62,11 +75,18 @@
             active.classList.add("active");
         </script>
 
-        {%with messages = get_flashed_messages(with_categories=true)%} {%if
-        messages%} {%for catagory, message in messages%}
         <script>
-            Toast.show("{{catagory}}", "{{message}}", 7);
+            var closeBtns = document.querySelectorAll(".closealert");
+            for (btn of closeBtns) {
+                btn.onclick = function () {
+                    let alert = this.parentElement;
+                    alert.style.opacity = "0";
+                    setTimeout(function () {
+                        alert.remove();
+                    }, 600);
+                };
+            }
         </script>
-        {%endfor%} {%endif%} {%endwith%} {%block script%}{%endblock script%}
+        {%block script%}{%endblock script%}
     </body>
 </html>

@@ -7,14 +7,14 @@
         {{ form.hidden_tag()}}
         <div class="email-container feild">
             {{form.email.label(class='user-label')}} {%if form.email.errors%}
-            {{form.email(class='user-label error')}} {%for error in
+            {{form.email(class='user-label input-error')}} {%for error in
             form.email.errors%}
             <span class="error-msg">{{error}}</span>
             {% endfor %} {%else%} {{form.email(class='email')}} {%endif%}
         </div>
         <div class="password-container feild">
             {{form.password.label(class='user-label')}} {%if form.password.errors%}
-            {{form.password(class='user-label error')}} {%for error in
+            {{form.password(class='user-label input-error')}} {%for error in
             form.password.errors%}
             <span class="error-msg">{{error}}</span>
             {% endfor %} {%else%} {{form.password(class='password')}} {%endif%}

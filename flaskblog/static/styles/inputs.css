@@ -53,10 +53,10 @@ a {
     margin: 0;
 }
 
-.error {
+.input-error {
     border: 3px solid red !important;
 }
-.error:focus {
+.input-error:focus {
     box-shadow: 0 0 8px 1px #ff5c5c, inset 0 0 5px #ff5c5c !important;
 }
 

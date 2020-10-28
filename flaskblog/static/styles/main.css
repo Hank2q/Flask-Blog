@@ -54,6 +54,45 @@ nav {
     left: 5px;
 }
 
+.alerts {
+    width: 60%;
+    margin: 10px auto;
+}
+
+.alert {
+    padding: 17px;
+    color: white;
+    opacity: 1;
+    border-radius: 4px;
+    transition: opacity 0.6s;
+}
+.alert.info {
+    background-color: #2faacf;
+}
+.alert.success {
+    background-color: #4caf50;
+}
+.alert.warning {
+    background-color: #ff9800;
+}
+.alert.error {
+    background-color: #bd4a41;
+}
+.closealert {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.closealert:hover {
+    color: black;
+}
+
 main {
     width: 100%;
     margin: 20px auto;

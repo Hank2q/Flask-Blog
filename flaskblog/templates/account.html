@@ -28,21 +28,21 @@ style%}
             {{ form.hidden_tag()}}
             <div class="username-container feild">
                 {{form.username.label(class='user-label')}} {%if
-                form.username.errors%} {{form.username(class='username error')}}
-                {%for error in form.username.errors%}
+                form.username.errors%} {{form.username(class='username
+                input-error')}} {%for error in form.username.errors%}
                 <span class="error-msg">{{error}}</span>
                 {% endfor %} {%else%} {{form.username(class='username')}} {%endif%}
             </div>
             <div class="email-container feild">
                 {{form.email.label()}} {%if form.email.errors%}
-                {{form.email(class='email error')}} {%for error in
+                {{form.email(class='email input-error')}} {%for error in
                 form.email.errors%}
                 <span class="error-msg">{{error}}</span>
                 {% endfor %} {%else%} {{form.email(class='email')}} {%endif%}
             </div>
             {{form.profile_img.label()}}<br />
             {%if form.profile_img.errors%} {{form.profile_img(class='profile_img
-            error')}}<br />
+            input-error')}}<br />
             {%for error in form.profile_img.errors%}
             <span class="error-msg">{{error}}</span>
             {% endfor %} {%else%} {{form.profile_img()}}<br />
