@@ -51,7 +51,6 @@ async function loadNext() {
 
             // fire an event so postMenu script will add its functionality to
             // newly added posts
-            // let ides = new_posts.querySelectorAll('.post')
             newContentLoaded()
 
         } catch (err) {
@@ -65,7 +64,5 @@ async function loadNext() {
 
 function newContentLoaded() {
     const event = new CustomEvent('NewContentLoaded', {})
-
     document.dispatchEvent(event)
-    console.log('event fired')
 }
