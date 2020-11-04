@@ -2,7 +2,7 @@ from os.path import splitext as get_ext, join
 from PIL import Image
 from flask_mail import Message
 from flaskblog import mail
-from flask import url_for, current_app
+from flask import url_for, current_app, render_template
 
 
 def update_profile_img(form_img, user_name):
@@ -22,4 +22,6 @@ def send_reset_email(user):
     message.body = f'''\
 To reset your password follow the link bellow:
 {url_for('users.reset_password', token=token, _external=True)}'''
+    message.html = render_template('resetEmailTemp.html', token=url_for(
+        'users.reset_password', token=token, _external=True))
     mail.send(message)
