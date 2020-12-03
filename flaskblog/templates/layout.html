@@ -8,14 +8,15 @@
             rel="stylesheet"
             href="{{ url_for('static', filename='styles/main.css') }}"
         />
+	<link
+            rel="stylesheet"
+            href="{{ url_for('static', filename='styles/fontawesome/css/all.css') }}"
+        />
         <link
             href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
             rel="stylesheet"
         />
-        <script
-            src="https://kit.fontawesome.com/b699383d77.js"
-            crossorigin="anonymous"
-        ></script>
+        
         <script src="{{ url_for('static', filename='javascripts/toast.js') }}"></script>
         {% block style %} {% endblock style%}
     </head>
